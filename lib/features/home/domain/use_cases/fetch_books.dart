@@ -1,6 +1,8 @@
 import 'package:ebook_reader/features/home/domain/entities/book.dart';
 import 'package:ebook_reader/features/home/domain/repositories/ibooks_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class FetchBooksUseCase {
   final IBooksRepository iBooksRepository;
 

@@ -18,7 +18,4 @@ class CustomDio implements IRestClient {
   CustomDio() {
     _dio = Dio(options);
   }
-
-  
-
 }
