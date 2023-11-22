@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +14,30 @@ class HomePage extends StatelessWidget {
         FavoritesTab(),
       ],
       builder: (context, child, controller) {
-        return Scaffold(
-          appBar: AppBar(
-            bottom: TabBar(
-              controller: controller,
-              tabs: const [
-                Tab(text: 'Estante', icon: Icon(Icons.book)),
-                Tab(text: 'Favoritos', icon: Icon(Icons.bookmark)),
-              ],
+        return Theme(
+          data: ThemeData(
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.blueAccent,
+              brightness: Brightness.light,
             ),
           ),
-          body: child,
+          child: SafeArea(
+            child: Scaffold(
+              body: Column(
+                children: [
+                  TabBar(
+                    controller: controller,
+                    tabs: const [
+                      Tab(text: 'Estante', icon: Icon(Icons.book)),
+                      Tab(text: 'Favoritos', icon: Icon(Icons.bookmark)),
+                    ],
+                  ),
+                  Expanded(child: child),
+                ],
+              ),
+            ),
+          ),
         );
       },
     );
