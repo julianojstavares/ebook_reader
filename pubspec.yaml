@@ -10,6 +10,7 @@ dependencies:
   auto_route: ^7.8.4
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.3
   vocsy_epub_viewer: ^2.0.0
 
 dev_dependencies:
