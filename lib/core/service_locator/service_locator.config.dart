@@ -8,6 +8,8 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:ebook_reader/core/data/rest_client/custom_dio.dart' as _i4;
+import 'package:ebook_reader/core/data/rest_client/rest_client.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -17,11 +19,12 @@ extension GetItInjectableX on _i1.GetIt {
     String? environment,
     _i2.EnvironmentFilter? environmentFilter,
   }) {
-    _i2.GetItHelper(
+    final gh = _i2.GetItHelper(
       this,
       environment,
       environmentFilter,
     );
+    gh.factory<_i3.IRestClient>(() => _i4.CustomDio());
     return this;
   }
 }
