@@ -1,4 +1,5 @@
 import 'package:ebook_reader/features/home/domain/entities/book.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter/material.dart';
 
 import 'cover_widget.dart';
@@ -13,15 +14,11 @@ class BookshelfGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
+    return MasonryGridView.count(
       padding: const EdgeInsets.all(10),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        mainAxisExtent: 220,
-      ),
+      crossAxisCount: 3,
+      crossAxisSpacing: 10,
+      mainAxisSpacing: 10,
       itemCount: books.length,
       itemBuilder: (context, index) => CoverWidget(
         index: index,

@@ -13,13 +13,16 @@ class CoverWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: Stack(
+    return Container(
+      color: Colors.red,
+      height: 280,
+      child: Column(
+        children: [
+          Stack(
             alignment: Alignment.center,
             children: [
               Container(
+                height: 180,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: NetworkImage(book.coverUrl),
@@ -28,7 +31,6 @@ class CoverWidget extends StatelessWidget {
                   border: Border.all(),
                 ),
               ),
-              Text("$index"),
               Positioned(
                 top: -7,
                 right: -10,
@@ -42,17 +44,21 @@ class CoverWidget extends StatelessWidget {
               ),
             ],
           ),
-        ),
-        Text(
-          book.title,
-          textAlign: TextAlign.center,
-        ),
-        Text(
-          book.author,
-          textAlign: TextAlign.center,
-          style: const TextStyle(fontStyle: FontStyle.italic),
-        ),
-      ],
+          Text(
+            book.title,
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 4,
+          ),
+          Text(
+            book.author,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontStyle: FontStyle.italic),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 3,
+          ),
+        ],
+      ),
     );
   }
 }
