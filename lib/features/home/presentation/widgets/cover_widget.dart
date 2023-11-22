@@ -14,7 +14,7 @@ class CoverWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red,
+      color: Colors.transparent,
       height: 280,
       child: Column(
         children: [
