@@ -1,9 +1,11 @@
 import 'package:ebook_reader/core/service_locator/service_locator.dart';
 import 'package:ebook_reader/features/home/presentation/bloc/fetch_books/fetch_books_bloc.dart';
-import 'package:ebook_reader/features/home/presentation/bloc/fetch_books/fetch_books_event.dart';
 import 'package:ebook_reader/features/home/presentation/bloc/fetch_books/fetch_books_state.dart';
+import 'package:ebook_reader/features/home/presentation/widgets/fetch_books_error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'bookshelf_grid.dart';
 
 class BookshelfBlocWidget extends StatelessWidget {
   const BookshelfBlocWidget({super.key});
@@ -27,18 +29,10 @@ class BookshelfBlocWidget extends StatelessWidget {
         return const CircularProgressIndicator();
 
       case FetchBooksError():
-        return Column(
-          children: [
-            Text(state.message),
-            ElevatedButton(
-              onPressed: () => getIt.get<FetchBooksBloc>().add(Fetched()),
-              child: const Text("Tentar novamente"),
-            ),
-          ],
-        );
+        return FetchBooksErrorWidget(message: state.message);
 
       case FetchBooksSuccess():
-        return const Text("Books fetched");
+        return BookshelfGrid(books: state.books);
 
       default:
         return const SizedBox();

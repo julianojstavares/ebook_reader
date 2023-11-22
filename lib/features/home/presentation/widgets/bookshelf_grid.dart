@@ -1,24 +1,32 @@
+import 'package:ebook_reader/features/home/domain/entities/book.dart';
 import 'package:flutter/material.dart';
 
 import 'cover_widget.dart';
 
 class BookshelfGrid extends StatelessWidget {
+  final List<BookEntity> books;
+
   const BookshelfGrid({
     super.key,
+    required this.books,
   });
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      shrinkWrap: true,
       padding: const EdgeInsets.all(10),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
-        childAspectRatio: 3 / 4,
+        mainAxisExtent: 220,
       ),
-      itemCount: 12,
-      itemBuilder: (context, index) => CoverWidget(index: index),
+      itemCount: books.length,
+      itemBuilder: (context, index) => CoverWidget(
+        index: index,
+        book: books[index],
+      ),
     );
   }
 }
