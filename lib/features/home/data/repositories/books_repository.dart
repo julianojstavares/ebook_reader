@@ -15,4 +15,10 @@ class BooksRepository implements IBooksRepository {
   Future<List<BookEntity>> fetchBooks() async {
     return await booksDataSource.fetchBooks();
   }
+  
+  @override
+  Future<void> downloadEbook(String url, String savePath, String fileName) async {
+    await booksDataSource.downloadEbook(url, savePath, fileName);
+    return;
+  }
 }

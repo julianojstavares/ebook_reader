@@ -3,7 +3,7 @@ import 'package:ebook_reader/features/home/data/datasources/ibooks_datasource.da
 import 'package:ebook_reader/features/home/data/models/book_model.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: IBooksDataSource)  
+@Injectable(as: IBooksDataSource)
 class DioBooks implements IBooksDataSource {
   final IRestClient restClient;
 
@@ -14,7 +14,7 @@ class DioBooks implements IBooksDataSource {
   @override
   Future<List<BookModel>> fetchBooks() async {
     final client = restClient.instance();
-    
+
     const url = "https://escribo.com/books.json";
 
     final response = await client.get(url);
@@ -25,5 +25,13 @@ class DioBooks implements IBooksDataSource {
         booksJson.map((bookJson) => BookModel.fromJson(bookJson)).toList();
 
     return books;
+  }
+
+  @override
+  Future<void> downloadEbook(
+      String url, String savePath, String fileName) async {
+    final client = restClient.instance();
+
+    await client.download(url, "$savePath/$fileName");
   }
 }

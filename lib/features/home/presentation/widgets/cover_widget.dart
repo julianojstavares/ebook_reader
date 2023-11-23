@@ -1,4 +1,7 @@
+import 'package:ebook_reader/core/service_locator/service_locator.dart';
 import 'package:ebook_reader/features/home/domain/entities/book.dart';
+import 'package:ebook_reader/features/home/presentation/bloc/show_ebook/show_ebook_bloc.dart';
+import 'package:ebook_reader/features/home/presentation/bloc/show_ebook/show_ebook_event.dart';
 import 'package:flutter/material.dart';
 
 class CoverWidget extends StatelessWidget {
@@ -13,6 +16,7 @@ class CoverWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = getIt.get<ShowEbookBloc>();
     return Container(
       color: Colors.transparent,
       height: 280,
@@ -21,14 +25,17 @@ class CoverWidget extends StatelessWidget {
           Stack(
             alignment: Alignment.center,
             children: [
-              Container(
-                height: 180,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(book.coverUrl),
-                    fit: BoxFit.fill,
+              GestureDetector(
+                onTap: () => bloc.add(Displayed(book: book)),
+                child: Container(
+                  height: 180,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(book.coverUrl),
+                      fit: BoxFit.fill,
+                    ),
+                    border: Border.all(),
                   ),
-                  border: Border.all(),
                 ),
               ),
               Positioned(
