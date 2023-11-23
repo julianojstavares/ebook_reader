@@ -15,7 +15,6 @@ class FavoriteToggle extends StatefulWidget {
 }
 
 class _FavoriteToggleState extends State<FavoriteToggle> {
-  bool favorite = false;
   final favoritesBox = Hive.box<BookEntity>('favoritesBox');
 
   @override
@@ -23,7 +22,7 @@ class _FavoriteToggleState extends State<FavoriteToggle> {
     final book = widget.book;
 
     return Visibility(
-      visible: !favorite,
+      visible: !favoritesBox.containsKey(book.id),
       replacement: GestureDetector(
         child: const Icon(
           Icons.bookmark,
@@ -33,9 +32,7 @@ class _FavoriteToggleState extends State<FavoriteToggle> {
         onTap: () {
           favoritesBox.delete(book.id);
 
-          setState(() {
-            favorite = false;
-          });
+          setState(() {});
         },
       ),
       child: GestureDetector(
@@ -46,9 +43,7 @@ class _FavoriteToggleState extends State<FavoriteToggle> {
         onTap: () {
           favoritesBox.put(book.id, book);
 
-          setState(() {
-            favorite = true;
-          });
+          setState(() {});
         },
       ),
     );
