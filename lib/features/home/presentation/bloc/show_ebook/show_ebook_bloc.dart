@@ -24,7 +24,7 @@ class ShowEbookBloc extends Bloc<ShowEbookEvent, ShowEbookState> {
   }
 
   void _onDisplayed(Displayed event, Emitter<ShowEbookState> emit) async {
-    emit(ShowEbookLoading());
+    emit(ShowEbookLoading(title: event.book.title));
 
     final Directory? downloadsDir = await getExternalStorageDirectory();
 

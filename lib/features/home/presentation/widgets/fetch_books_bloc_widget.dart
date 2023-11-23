@@ -7,8 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bookshelf_grid.dart';
 
-class BookshelfBlocWidget extends StatelessWidget {
-  const BookshelfBlocWidget({super.key});
+class FetchBooksBlocWidget extends StatelessWidget {
+  const FetchBooksBlocWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
