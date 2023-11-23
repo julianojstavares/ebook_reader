@@ -12,7 +12,8 @@ class FetchBooksUseCase {
 
   Future<List<BookEntity>> call() async {
     final List<BookEntity> books = await iBooksRepository.fetchBooks();
-    return books;
-  }
+    final uniqueBooks = books.toSet().toList();
 
+    return uniqueBooks;
+  }
 }
