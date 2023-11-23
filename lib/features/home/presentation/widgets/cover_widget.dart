@@ -21,14 +21,17 @@ class CoverWidget extends StatelessWidget {
           Stack(
             alignment: Alignment.center,
             children: [
-              Container(
-                height: 180,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(book.coverUrl),
-                    fit: BoxFit.fill,
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  height: 180,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(book.coverUrl),
+                      fit: BoxFit.fill,
+                    ),
+                    border: Border.all(),
                   ),
-                  border: Border.all(),
                 ),
               ),
               Positioned(
