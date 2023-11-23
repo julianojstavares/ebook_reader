@@ -40,10 +40,10 @@ class CoverWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              const Positioned(
+              Positioned(
                 top: -7,
                 right: -10,
-                child: FavoriteToggle(),
+                child: FavoriteToggle(book: book),
               ),
             ],
           ),
@@ -65,5 +65,3 @@ class CoverWidget extends StatelessWidget {
     );
   }
 }
-
-
