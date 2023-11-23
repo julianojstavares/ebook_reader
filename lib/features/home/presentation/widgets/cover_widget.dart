@@ -4,6 +4,8 @@ import 'package:ebook_reader/features/home/presentation/bloc/show_ebook/show_ebo
 import 'package:ebook_reader/features/home/presentation/bloc/show_ebook/show_ebook_event.dart';
 import 'package:flutter/material.dart';
 
+import 'favorite_toggle.dart';
+
 class CoverWidget extends StatelessWidget {
   final int index;
   final BookEntity book;
@@ -38,16 +40,10 @@ class CoverWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 top: -7,
                 right: -10,
-                child: GestureDetector(
-                  onTap: () {},
-                  child: const Icon(
-                    Icons.bookmark_border,
-                    size: 50,
-                  ),
-                ),
+                child: FavoriteToggle(),
               ),
             ],
           ),
@@ -69,3 +65,5 @@ class CoverWidget extends StatelessWidget {
     );
   }
 }
+
+
