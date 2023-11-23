@@ -19,11 +19,13 @@ class ShowEbookBloc extends Bloc<ShowEbookEvent, ShowEbookState> {
 
   ShowEbookBloc({
     required this.downloadEbookUseCase,
-  }) : super(ShowEbookLoading()) {
+  }) : super(ShowEbookInitial()) {
     on<Displayed>(_onDisplayed);
   }
 
   void _onDisplayed(Displayed event, Emitter<ShowEbookState> emit) async {
+    emit(ShowEbookLoading());
+
     final Directory? downloadsDir = await getExternalStorageDirectory();
 
     if (downloadsDir == null) {
@@ -42,7 +44,7 @@ class ShowEbookBloc extends Bloc<ShowEbookEvent, ShowEbookState> {
     } else {
       log(name: "ShowEbookBloc", "Listando os arquivos no diretório $savePath");
       for (var file in files) {
-        log(file.path);
+        log(name: "ShowEbookBloc", file.path);
       }
     }
 

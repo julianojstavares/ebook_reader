@@ -2,9 +2,7 @@ import 'package:ebook_reader/core/service_locator/service_locator.dart';
 import 'package:ebook_reader/features/home/domain/entities/book.dart';
 import 'package:ebook_reader/features/home/presentation/bloc/show_ebook/show_ebook_bloc.dart';
 import 'package:ebook_reader/features/home/presentation/bloc/show_ebook/show_ebook_event.dart';
-import 'package:ebook_reader/features/home/presentation/bloc/show_ebook/show_ebook_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CoverWidget extends StatelessWidget {
   final int index;
@@ -18,6 +16,7 @@ class CoverWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = getIt.get<ShowEbookBloc>();
     return Container(
       color: Colors.transparent,
       height: 280,
@@ -27,40 +26,16 @@ class CoverWidget extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               GestureDetector(
-                onTap: () =>
-                    getIt.get<ShowEbookBloc>().add(Displayed(book: book)),
-                child: BlocBuilder<ShowEbookBloc, ShowEbookState>(
-                  bloc: getIt.get<ShowEbookBloc>(),
-                  builder: (context, state) {
-                    if (state is ShowEbookError) {
-                      showDialog(
-                        context: context,
-                        builder: (ctx) => AlertDialog(
-                          title: const Text("Erro"),
-                          content: Text(state.message),
-                          actions: <Widget>[
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(ctx).pop();
-                              },
-                              child: const Text("OK"),
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-
-                    return Container(
-                      height: 180,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(book.coverUrl),
-                          fit: BoxFit.fill,
-                        ),
-                        border: Border.all(),
-                      ),
-                    );
-                  },
+                onTap: () => bloc.add(Displayed(book: book)),
+                child: Container(
+                  height: 180,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(book.coverUrl),
+                      fit: BoxFit.fill,
+                    ),
+                    border: Border.all(),
+                  ),
                 ),
               ),
               Positioned(

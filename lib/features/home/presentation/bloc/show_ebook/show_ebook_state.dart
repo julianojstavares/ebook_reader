@@ -1,5 +1,7 @@
 abstract class ShowEbookState {}
 
+class ShowEbookInitial extends ShowEbookState {}
+
 class ShowEbookLoading extends ShowEbookState {}
 
 class ShowEbookError extends ShowEbookState {
