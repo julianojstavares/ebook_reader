@@ -5,12 +5,9 @@ import 'rest_client.dart';
 
 @Injectable(as: IRestClient)
 class CustomDio implements IRestClient {
-
   late Dio _dio;
-  
-  BaseOptions options = BaseOptions(
-    connectTimeout: const Duration(seconds: 3),
-  );
+
+  BaseOptions options = BaseOptions();
 
   @override
   Dio instance() => _dio;
