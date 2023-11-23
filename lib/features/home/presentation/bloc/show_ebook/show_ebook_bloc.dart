@@ -76,6 +76,10 @@ class ShowEbookBloc extends Bloc<ShowEbookEvent, ShowEbookState> {
       nightMode: true,
     );
 
+    VocsyEpub.locatorStream.listen((locator) {
+      log('LOCATOR: $locator');
+    });
+
     VocsyEpub.open("$savePath/$fileName");
   }
 }
