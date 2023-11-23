@@ -32,9 +32,6 @@ class DioBooks implements IBooksDataSource {
       String url, String savePath, String fileName) async {
     final client = restClient.instance();
 
-    await client.download(
-      "https://vocsyinfotech.in/envato/cc/flutter_ebook/uploads/22566_The-Racketeer---John-Grisham.epub",
-      "$savePath/$fileName.epub",
-    );
+    await client.download(url, "$savePath/$fileName");
   }
 }

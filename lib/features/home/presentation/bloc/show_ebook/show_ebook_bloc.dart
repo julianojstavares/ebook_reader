@@ -35,15 +35,27 @@ class ShowEbookBloc extends Bloc<ShowEbookEvent, ShowEbookState> {
     final savePath = downloadsDir.path;
     final fileName = "${event.book.title}.epub";
 
-    bool fileExists = File('$savePath/$fileName').existsSync();
+    List<FileSystemEntity> files = downloadsDir.listSync();
+
+    if (files.isEmpty) {
+      log(name: "ShowEbookBloc", "O diretório $savePath está vazio");
+    } else {
+      log(name: "ShowEbookBloc", "Listando os arquivos no diretório $savePath");
+      for (var file in files) {
+        log(file.path);
+      }
+    }
+
+    bool fileExists = await File('$savePath/$fileName').exists();
 
     if (!fileExists) {
       log(
-          name: "ShowEbookBloc",
-          "O arquivo $fileName não existe no diretório: $savePath");
+        name: "ShowEbookBloc",
+        "O arquivo $fileName não existe no diretório: $savePath",
+      );
 
       try {
-        log(name: "ShowEbookBloc", "Baixando arquivo");
+        log(name: "ShowEbookBloc", "Baixando arquivo $fileName");
 
         await downloadEbookUseCase(
           savePath: savePath,
@@ -61,11 +73,16 @@ class ShowEbookBloc extends Bloc<ShowEbookEvent, ShowEbookState> {
 
         return;
       }
+    } else {
+      log(
+        name: "ShowEbookBloc",
+        "O arquivo $fileName já existe no diretório: $savePath",
+      );
     }
 
     emit(ShowEbookOpen());
 
-    log(name: "ShowEbookBloc", "Tentando abrir ebook");
+    log(name: "ShowEbookBloc", "Tentando abrir ebook $fileName");
 
     VocsyEpub.setConfig(
       themeColor: Colors.white,
@@ -77,7 +94,7 @@ class ShowEbookBloc extends Bloc<ShowEbookEvent, ShowEbookState> {
     );
 
     VocsyEpub.locatorStream.listen((locator) {
-      log('LOCATOR: $locator');
+      log(name: "ShowEbookBloc", 'VocsyEpub Locator: $locator');
     });
 
     VocsyEpub.open("$savePath/$fileName");
