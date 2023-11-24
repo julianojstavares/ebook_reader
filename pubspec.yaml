@@ -17,6 +17,7 @@ dependencies:
   get_it: ^7.6.4
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  icons_launcher: ^2.1.5
   injectable: ^2.3.2
   path_provider: ^2.1.1
   permission_handler: ^11.0.1
@@ -35,3 +36,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/
+
+icons_launcher:
+  image_path: "assets/ebook_reader.png"
+  platforms:
+    android:
+      enable: true
