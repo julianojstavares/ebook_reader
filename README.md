@@ -4,12 +4,6 @@
 
 Este é um projeto Flutter para um leitor de e-books.
 
-## Pré-requisitos
-
-- Flutter SDK: Versão 2.0.0 ou superior.
-- Dart: Versão 2.12.0 ou superior.
-- Android Studio: Versão 4.1 ou superior (recomendado para desenvolvimento Android).
-
 ## Passos para executar o projeto
 
 1. Clone o repositório:
@@ -38,17 +32,21 @@ Para Android:
 flutter run
 ```
 
+## Pacotes usados
+
+Consulte os pacotes usados no arquivo [pubspec.yaml](pubspec.yaml)
+
 ## Contribuição
 
 Contribuições são bem-vindas. Sinta-se à vontade para abrir uma issue ou enviar um pull request.
 
 ## Licença
 
-Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE para obter mais detalhes.
+Este projeto está licenciado sob a licença MIT.
 
 ## Contato
 
-Juliano Tavares - [https://linkedin.com/in/julianojstavares](LinkedIn)
+Juliano Tavares - [LinkedIn](https://linkedin.com/in/julianojstavares)
 
 ## Agradecimentos
 
